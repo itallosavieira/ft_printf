@@ -31,9 +31,9 @@ SRC			=	ft_atoi.c		\
 				ft_strtrim.c	\
 				ft_substr.c		\
 				ft_tolower.c	\
-				ft_toupper.c	\
-NAME		=	libft.a
+				ft_toupper.c
 
+NAME		=	libft.a
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -42,7 +42,9 @@ CFLAGS		=	-Wall -Wextra -Werror
 LIBFLAGS	=	rcs
 RM			=	rm -f
 
-all: 		$(NAME)
+all:
+			$(CC) $(CFLAGS) -c $(SRC)
+			ar $(LIBFLAGS) $(NAME) $(OBJ)
 
 $(NAME):
 			$(CC) $(CFLAGS) -c $(SRC)
