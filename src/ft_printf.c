@@ -1,58 +1,53 @@
 #include "../includes/ft_printf.h"
 
-int		ft_isspace(char ch)
+static int	ft_check_conversion(const char *format, t_printf pf)
 {
-	if (ch == ' ')
-		return (1);
-	return (0);
+
 }
 
-int		ft_ispercent(char ch)
+static int	ft_print_conversion(const char *format, t_printf pf)
 {
-	if (ch == '%')
-		return (1);
-	return (0);
+
 }
 
-int		ft_printf(const char *format, ...)
+static int	ft_printf_aux(const char *format, t_printf pf)
 {
-	t_printf 	pf;
-	t_flags 	flag;
-	t_items		item;
-
-	ft_start_sprintf(&pf);
-	ft_start_sflags(&flag);
-
-	va_start(pf.argument_list, format);
 	while (format[pf.index] && format)
 	{
-		if (format[pf.index] == flag.percent)
+		if (format[pf.index] == '%')
 		{
 			pf.index++;
-			if (format[pf.index] == flag.percent)
+			ft_print_conversion(format, pf);
+			if (format[pf.index] == '%')
 			{
 				pf.index++;
 				ft_putchar_fd('%', 1);
 				continue;
 			}
-			if (format[pf.index] == flag.character)
+			if (format[pf.index] == 'c')
 			{
 				pf.index++;
-				item.character = va_arg(pf.argument_list, int);
-				ft_putchar_fd(item.character, 1);
+				ft_putchar_fd(va_arg(pf.argument_list, int), 1);
 			}
-			if (format[pf.index] == flag.string)
+			if (format[pf.index] == 's')
 			{
 				pf.index++;
-				item.string = va_arg(pf.argument_list, char *);
-				ft_putstr_fd(item.string, 1);
+				ft_putstr_fd(va_arg(pf.argument_list, char *), 1);
 			}
-
-
 		}
 		ft_putchar_fd(format[pf.index], 1);
 		pf.index++;
 	}
+	return (pf.index);
+}
+
+int			ft_printf(const char *format, ...)
+{
+	t_printf 	pf;
+
+	ft_start_sprintf(&pf);
+	va_start(pf.argument_list, format);
+	pf.total = ft_printf_aux(format, pf);
 	va_end(pf.argument_list);
-	return (1);
+	return (pf.total);
 }
