@@ -1,53 +1,40 @@
-#include "../includes/ft_printf.h"
-
-static int	ft_check_conversion(const char *format, t_printf pf)
+#include <ft_printf.h>
+static int handle_input(const char *str, va_list args)
 {
+	int i;
+	int counter;
 
-}
-
-static int	ft_print_conversion(const char *format, t_printf pf)
-{
-
-}
-
-static int	ft_printf_aux(const char *format, t_printf pf)
-{
-	while (format[pf.index] && format)
+	i = 0;
+	counter = 0;
+	while (str[i])
 	{
-		if (format[pf.index] == '%')
+		if (str[i] != '%')
+			counter += ft_putchar(str[i]);
+		else if ((str[i] == '%') && str[i + 1])
 		{
-			pf.index++;
-			ft_print_conversion(format, pf);
-			if (format[pf.index] == '%')
-			{
-				pf.index++;
-				ft_putchar_fd('%', 1);
-				continue;
-			}
-			if (format[pf.index] == 'c')
-			{
-				pf.index++;
-				ft_putchar_fd(va_arg(pf.argument_list, int), 1);
-			}
-			if (format[pf.index] == 's')
-			{
-				pf.index++;
-				ft_putstr_fd(va_arg(pf.argument_list, char *), 1);
-			}
+			i++;
+			if (is_argument(str[i]))
+				counter += handle_argument_format(str[i], args);
+			else if (str[i])
+				counter += ft_putchar(str[i]);
 		}
-		ft_putchar_fd(format[pf.index], 1);
-		pf.index++;
+		return (counter);
 	}
-	return (pf.index);
 }
 
-int			ft_printf(const char *format, ...)
+int ft_printf(const char *fmt, ...)
 {
-	t_printf 	pf;
+	va_list args;
+	const char *str;
+	int counter;
 
-	ft_start_sprintf(&pf);
-	va_start(pf.argument_list, format);
-	pf.total = ft_printf_aux(format, pf);
-	va_end(pf.argument_list);
-	return (pf.total);
+	counter = 0;
+	str = ft_strdup(fmt);
+	if (!str)
+		return (0);
+	va_start(args, fmt);
+	counter += handle_input(str, args);
+	va_end(args);
+	free((void *)str);
+	return (counter);
 }
