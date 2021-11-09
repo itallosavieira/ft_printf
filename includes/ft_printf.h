@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isa-viei <isa-viei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/09 20:52:55 by isa-viei          #+#    #+#             */
+/*   Updated: 2021/11/09 20:54:29 by isa-viei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -5,12 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define	HEX_BASE			"0123456789abcdef"
-# define	HEX_BASE_UPPER		"0123456789ABCDEF"
-# define	DECIMAL_BASE		"0123456789"
-# define	PRECEDING_STR		"0x"
-# define	EXCEPTION_STR		"(null)"
-# define	ZERO_EXCEPTION_STR	"(nil)"
+# define HEX_BASE "0123456789abcdef"
+# define HEX_BASE_UPPER "0123456789ABCDEF"
+# define DECIMAL_BASE "0123456789"
+# define PRECEDING_STR "0x"
+# define EXCEPTION_STR "(null)"
 
 int		ft_printf(const char *fmt, ...);
 
@@ -32,6 +43,5 @@ void	ft_putnbr(int nbr);
 char	*itoa_base(unsigned long long n, char *base);
 
 int		is_argument(int c);
-int		is_flag(int c);
 
 #endif

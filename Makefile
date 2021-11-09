@@ -5,7 +5,7 @@ CC_FLAGS = -Wall -Wextra -Werror
 
 INCLUDES_PATH = ./includes
 OBJECTS_PATH = ./objects
-SOURCES_PATH = ./sources
+SOURCES_PATH = ./src
 
 SOURCE_FILES = ft_printf.c \
 				handlers/validators/is_argument.c \

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_decimal.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isa-viei <isa-viei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/09 20:44:57 by isa-viei          #+#    #+#             */
+/*   Updated: 2021/11/09 20:45:05 by isa-viei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_printf.h>
 
 static int	handle_negative_integer(signed long *value)
 {
-	int	counter;
+	int		counter;
 
 	counter = 0;
 	if (*value < 0)

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isa-viei <isa-viei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/09 20:28:47 by isa-viei          #+#    #+#             */
+/*   Updated: 2021/11/09 20:43:03 by isa-viei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_printf.h>
-static int handle_input(const char *str, va_list args)
+
+static int	handle_input(const char *str, va_list args)
 {
-	int i;
-	int counter;
+	int		i;
+	int		counter;
 
 	i = 0;
 	counter = 0;
@@ -18,15 +31,16 @@ static int handle_input(const char *str, va_list args)
 			else if (str[i])
 				counter += ft_putchar(str[i]);
 		}
-		return (counter);
+		i++;
 	}
+	return (counter);
 }
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
-	va_list args;
-	const char *str;
-	int counter;
+	va_list		args;
+	const char	*str;
+	int			counter;
 
 	counter = 0;
 	str = ft_strdup(fmt);

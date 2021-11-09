@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_argument_format.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isa-viei <isa-viei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/09 20:44:05 by isa-viei          #+#    #+#             */
+/*   Updated: 2021/11/09 20:44:05 by isa-viei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_printf.h>
 
 int	handle_argument_format(int c, va_list args)
 {
-	int	counter;
+	int		counter;
 
 	counter = 0;
 	if (c == 'c')
